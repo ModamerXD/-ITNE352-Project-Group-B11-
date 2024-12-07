@@ -95,7 +95,6 @@ def client_handling(client_socket, client_name):
                 else:
                     params = {
                         "apiKey": "9d73eeefa6dc4ec8a2fe74a16501503d",
-                        "language": "en"
                     }
 
                 response = requests.get(url,params=params)
