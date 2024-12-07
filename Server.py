@@ -32,7 +32,8 @@ def client_handling(client_socket, client_name):
     try:
         while True:
             request = client_socket.recv(2048).decode("utf-8")
-            if not request:
+            # check if the request was to disconnect connection
+            if request == 'quit':
                 break  # Client disconnected
             print(f"Received request: {request}")
             # check if the request was for headlines
@@ -64,9 +65,9 @@ def client_handling(client_socket, client_name):
                 save_json(response.json(),client_name,'Headlines')
 
                 if response.status_code == 200:
-                    client_socket.sendall(response.text.encode("utf-8"))
+                    client_socket.send(response.text.encode("utf-8"))
                 else:
-                    client_socket.sendall(f"API Error: {response.status_code}".encode("utf-8"))
+                    client_socket.send(f"API Error: {response.status_code}".encode("utf-8"))
             
             
             # Check if the client wanted to search by sources
@@ -100,13 +101,12 @@ def client_handling(client_socket, client_name):
                 save_json(response.json(),client_name,'Sources')
 
                 if response.status_code == 200:
-                        client_socket.sendall(response.text.encode("utf-8"))
+                        client_socket.sendall(response.encode("utf-8"))
                 else:
-                    client_socket.sendall(f"API Error: {response.status_code}".encode("utf-8"))
+                    client_socket.send(f"API Error: {response.status_code}".encode("utf-8"))
 
             # if it was something else, in this case quit. We terminate the connection
-            else:
-                break
+            
 
     except Exception as e:
         print(f"Error handling client: {e}")
@@ -118,7 +118,7 @@ def save_json(data,client_name,option):
     # directory path to save user data (json files)
     directory = "C:/University/Semester 5/ITNE352/Project/github/-ITNE352-Project-Group-B11-/json"
 
-    file_name = client_name+'_'+option+'B11'
+    file_name = client_name+'_'+option+'_B11'
 
     file_path = os.path.join(directory, file_name)
 
