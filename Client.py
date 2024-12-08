@@ -139,9 +139,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                     print("No data found")
                 else:
                     for i in range(len(data['articles'])):
-                        print(str((i+1))+'-\tSource name:', data['articles'][i]['source']['name'])
-                        print("\tAuthor: ", data['articles'][i]['author'])                        
-                        print("\tTitle: ", data['articles'][i]['title'])
+                        print(str((i+1))+'- Source name:', data['articles'][i]['source']['name'])
+                        print("  Author: ", data['articles'][i]['author'])                        
+                        print("  Title: ", data['articles'][i]['title'])
 
 
                 print(str((len(data['articles'])+1))+"- Back to headlines menu")

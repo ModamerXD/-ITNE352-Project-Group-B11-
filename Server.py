@@ -64,7 +64,11 @@ def client_handling(client_socket, client_name):
 
                 response = requests.get(url,params=params)
 
-                save_json(response.json(),client_name,request[5:])
+                save_json(response.json(),client_name,request)
+                print('='*30)
+                print("The requester name:" , client_name)
+                print("Option: Source")
+                print("Request parameters:", request)
 
                 if response.status_code == 200:
                     client_socket.send(response.text.encode("utf-8"))
@@ -121,15 +125,19 @@ def client_handling(client_socket, client_name):
         print(client_name,"connection closed.")
 
 def save_json(data,client_name,option):
-    # directory path to save user data (json files)
-    directory = "C:/University/Semester 5/ITNE352/Project/github/-ITNE352-Project-Group-B11-/json"
+    current_directory = os.getcwd()
 
-    file_name = client_name+'_'+option+'_B11'
+    directory = os.path.join(current_directory, "json")
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    file_name = f"{client_name}_{option}_B11.json"
 
     file_path = os.path.join(directory, file_name)
 
-    with open(file_path, "w") as json_file:
-        json.dump(data, json_file, indent=4)  
+    with open(file_path, 'w') as file:
+        json.dump(data, file)
 
 
 
