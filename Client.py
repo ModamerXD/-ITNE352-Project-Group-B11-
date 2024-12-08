@@ -6,6 +6,7 @@ import json
 host = "127.0.0.1"
 port = 62894
 
+# create socket
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
     C_socket.connect((host, port))
     print("Connected to the server.")
@@ -15,6 +16,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
     C_socket.send(name.encode("utf-8"))
     print('='*100)
     
+    # ask the user for searching options
     while True:
         print("Main menu. Choose by typing the number")
         print("1- Search headlines")
@@ -31,10 +33,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                 print("4- List all new headlines")
                 print("5- Back to main menu")
                 head = int(input())
-
+                # ask the user for keyword if he chose it
                 if head == 1:
                     keyword = input("Enter the key word to search: ")
                     C_socket.send("head:keyword:{}".format(keyword).encode("utf-8"))
+
+                # ask the user for category and send appropriate message corresponding to the input
                 elif head == 2:
                     while True:
                         print('='*100)
@@ -69,7 +73,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                         else:
                             print("Invalid number, please try again")
 
-
+                # Ask the user for the country and send the appropriate message corresponding to it
                 elif head == 3:
                     while True:
                         print('='*100)
@@ -110,23 +114,26 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                         else:
                             print("Invalid number, please try again")
 
+                # list all articles (no preference)
                 elif head == 4:
-                    C_socket.send("head:category:All".encode("utf-8"))
+                    C_socket.send("head:All".encode("utf-8"))
 
+                # go back to main menu
                 elif head == 5:
                     break
-
+                # if the user input other input than displayed
                 else:
                     print("Invalid number, please try again")
                     continue
                 
-                
+                # receive the input with buffer size of 20 kilobytes and convert it to json dictionary
                 response = C_socket.recv(20000).decode("utf-8")
                 
                 data = json.loads(response)  # Convert the JSON string to a Python dictionary
                     
                 
                 print('='*100)
+                # display the articles we received and prompt the user to choose one or go back
                 print("Choose a number from the following articles to view more details of it")
                 if len(data['articles']) == 0:
                     print("No data found")
@@ -136,9 +143,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                         print("\tAuthor: ", data['articles'][i]['author'])                        
                         print("\tTitle: ", data['articles'][i]['title'])
 
-                        
+
                 print(str((len(data['articles'])+1))+"- Back to headlines menu")
 
+                # loop in case if the user choose another number that is not listed
                 while True:
 
                     number = int(input("\nChoose number: "))
@@ -163,17 +171,19 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
 
 
         elif option == 2:
+            # prompt the user for the sources menu and chose one
             while True:
                 print('='*100)
-                print("Search headlines menu. Choose by typing the number")
+                print("Search sources menu. Choose by typing the number")
                 print("1- Search by category")
                 print("2- Search by country")
                 print("3- Search by language")
                 print("4- List all")
                 print("5- Back to the main menu")
                 source = int(input())      
-
+                
                 if source == 1:
+                    # We send appropriate message corresponding to the option the client chose, and loop in case they input number other than the displayed
                     while True:
                         print('='*100)
                         print("Enter the number of category to search")
@@ -206,6 +216,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                             break
                         else:
                             print("Invalid number, please try again")
+
 
                 elif source == 2:
                     while True:
@@ -265,7 +276,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                         else:
                             print("Invalid number, please try again")
                 elif source == 4:
-                    C_socket.send("source:category:All".encode("utf-8"))
+                    C_socket.send("source:All".encode("utf-8"))
                 
 
                 elif source == 5:
@@ -278,11 +289,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
 
                 response = C_socket.recv(50000).decode("utf-8")
                 
-                data = json.loads(response)  # Convert the JSON string to a Python dictionary
+                data = json.loads(response)  
 
                 
                 print('='*100)
+                
                 print("Choose a number from the following sources to view more details of it")
+
+                # check if there's any sources retrieved or not
                 if len(data['sources']) == 0:
                     print("No data found")
                 else:
@@ -294,10 +308,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                 while True:
                     number = int(input("\nChoose number: "))
 
-                    if number == len(data['sources'])+1:
+                    if number == len(data['sources'])+1: 
                         break
                     
-                    elif number >0 and number <= len(data['sources']):
+                    elif number >0 and number <= len(data['sources']): #Check if the number is valid
                         print('='*100)
                         print("Source name:", data['sources'][number-1]['name'])
                         print("Country:", data['sources'][number-1]['country'])
