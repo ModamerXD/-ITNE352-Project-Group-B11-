@@ -127,7 +127,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as C_socket:
                     continue
                 
                 # receive the input with buffer size of 20 kilobytes and convert it to json dictionary
-                response = C_socket.recv(20000).decode("utf-8")
+                response = C_socket.recv(50000).decode("utf-8")
                 
                 data = json.loads(response)  # Convert the JSON string to a Python dictionary
                     

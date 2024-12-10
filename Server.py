@@ -35,25 +35,29 @@ def client_handling(client_socket, client_name):
         while True:
             request = client_socket.recv(2048).decode("utf-8")
             # check if the request was to disconnect connection
-            if request == 'quit':
+            if request == 'quit' or not request:
                 break  # Client disconnected
+
+            print(request)
+
+            parts = request.split(":")
             # check if the request was for headlines
-            if request[:4] == 'head':
+            if parts[0] == 'head':
                 url = 'https://newsapi.org/v2/top-headlines'
                 # check what menu option the user chose to search by for headlines
-                if request[5:12] == 'keyword':
+                if parts[1] == 'keyword':
                     params = {
-                        "q":request[13:], 
+                        "q": parts[2], 
                         "apiKey": API
                     }
-                elif request[5:13] == 'category':
+                elif parts[1] == 'category':
                     params = {
-                        "category": request[14:], 
+                        "category": parts[2], 
                         "apiKey": API 
                     }
-                elif request[5:12] == 'country':
+                elif parts[1] == 'country':
                     params = {
-                        "country": request[13:], 
+                        "country": parts[2], 
                         "apiKey": API
                     }
                 else:
@@ -64,11 +68,13 @@ def client_handling(client_socket, client_name):
 
                 response = requests.get(url,params=params)
 
-                save_json(response.json(),client_name,request)
+                
+
+                save_json(response.json(),client_name,parts)
                 print('='*30)
                 print("The requester name:" , client_name)
-                print("Option: Source")
-                print("Request parameters:", request)
+                print("Option: Headlines")
+                print(f"Request parameters: {parts[1]} = {parts[2]}")
 
                 if response.status_code == 200:
                     client_socket.send(response.text.encode("utf-8"))
@@ -77,41 +83,41 @@ def client_handling(client_socket, client_name):
             
             
             # Check if the client wanted to search by sources
-            elif request[:6] == 'source':
+            elif parts[0] == 'source':
                 url = 'https://newsapi.org/v2/top-headlines/sources'
 
                 # check what menu option the client wanted to search by for sources
 
-                if request[7:15] == 'category':
+                if parts[1] == 'category':
                     params = {
-                        "category":request[16:], 
+                        "category": parts[2], 
                         "apiKey": API
                     }
-                elif request[7:14] == 'country':
+                elif parts[1] == 'country':
                     params = {
-                        "country": request[15:], 
+                        "country": parts[2], 
                         "apiKey": API
                     }
-                elif request[7:15] == 'language':
+                elif parts[1] == 'language':
                     params = {
-                        "language": request[16:], 
+                        "language": parts[2], 
                         "apiKey": API
                     }
                 else:
                     params = {
-                        "apiKey": API,
+                        "apiKey": API
                     }
 
                 response = requests.get(url,params=params)
 
-                save_json(response.json(),client_name,request[7:])
+                save_json(response.json(),client_name,parts)
                 print('='*30)
                 print("The requester name:" , client_name)
                 print("Option: Source")
-                print("Request parameters:", request)
+                print(f"Request parameters: {parts[1]} = {parts[2]}")
 
                 if response.status_code == 200:
-                        client_socket.send(response.text.encode("utf-8"))
+                    client_socket.send(response.text.encode("utf-8"))
                 else:
                     client_socket.send(f"API Error: {response.status_code}".encode("utf-8"))
 
@@ -119,7 +125,7 @@ def client_handling(client_socket, client_name):
             
 
     except Exception as e:
-        print(f"Error handling client: {e}")
+        client_socket.close()
     finally:
         client_socket.close()
         print(client_name,"connection closed.")
@@ -132,18 +138,17 @@ def save_json(data,client_name,option):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    file_name = f"{client_name}_{option}_B11.json"
+    file_name = f"{client_name}_{option[1]}.{option[2]}_B11.json"
 
     file_path = os.path.join(directory, file_name)
 
     with open(file_path, 'w') as file:
-        json.dump(data, file)
+        json.dump(data, file, indent=4)
 
 
 
 if __name__ == "__main__":
     start_server()
-
 
 
 
