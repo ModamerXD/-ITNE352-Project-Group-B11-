@@ -23,7 +23,7 @@ An program called the News API Client-Server System enables users to access the 
 
 **Table of Contents**
 - [Project-Description](#project-description)
-- [Requirements](#Requirements)
+- [Requirements](#requirements)
 - [How-to-Run](#how-to-run)
 - [Scripts](#scripts)
 - [Additional-Concepts](#additional-concepts)
