@@ -3,7 +3,7 @@
 -**Project Title**
 News API Client-Server System
 
-#project-description
+# project description
 -**Project Description**
 An program called the News API Client-Server System enables users to access the NewsAPI service to look for news headlines and sources. The system is scalable and effective for retrieving news in real time because it is designed to support several users.
 
@@ -31,7 +31,7 @@ An program called the News API Client-Server System enables users to access the 
 - [Conclusion](#conclusion)
 
 
-#requirements
+# requirements
 -**Requirements**
 -**need Python 3.8 or higher installed:**
 
@@ -44,7 +44,7 @@ An program called the News API Client-Server System enables users to access the 
 -'tkinter or tk'
 -'you must have a NewsAPI API key. You can get it by creating an account on NewsAPI.'
 
-#how to run
+# how to run
 -**how to run**
 
 - Start the server - 
@@ -59,6 +59,7 @@ save responses in JSON
 Running the client by python Client.py
 Follow the menu options to interact with the server:
 
+# scripts
 **The scripts**
 - First enter your name
 - 1 for Search by headlines , 
@@ -92,7 +93,7 @@ Client Script (`client.py`)
   - Displays categorized menus for news browsing.  
   - Sends requests to the server and processes responses.
 
-
+# additional concepts
 -**Addintional concept (GUI)** 
 you should run the Client by (python Client_gui.py)
 First you have to enter your name . 
@@ -104,12 +105,12 @@ If you choose keyword you should enter the keyword you want to search about it ,
 
 If you finish you can just close the GUI to terminate the session
 
-
+# acknowledgement
 **Acknowledgments**
 (Instructor: Dr. Mohammed Almeer)
 - Dr. Mohammed Almeer's constant support and outstanding advice throughout this project and the semester are greatly appreciated. His wise counsel and support have been essential to our educational process, motivating us to overcome obstacles and achieve excellence in our work. Dr. Almeer, your commitment to creating a cooperative and stimulating learning atmosphere has been really motivating, and we are incredibly appreciative of the beneficial influence you have had on our academic development.
 (University of Bahrain)
 
-
+# conclusion
 **Conclusion**
 This project showcases the development of a client-server application in Python using socket programming and multi-threading to interact with external APIs. It efficiently retrieves and serves real-time news data, demonstrating scalable and interactive client-server architecture.
