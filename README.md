@@ -29,17 +29,17 @@ Student Names , IDs: Sayed Ali Shafeeq Alawi - 202209438 | HUSAIN JAMEEL HUSAIN 
 
 
 
-**f.Requirements**
- need Python 3.8 or higher installed 
+-**f.Requirements**
+-**need Python 3.8 or higher installed:**
 
 -python packages-
-socket
-threading
-requests
-json
-os
-tkinter or tk
-you must have a NewsAPI API key. You can get it by creating an account on NewsAPI.
+- 'socket'
+-'threading'
+-'requests'
+-'json'
+-'os'
+-'tkinter or tk'
+-'you must have a NewsAPI API key. You can get it by creating an account on NewsAPI.'
 
 
 **g.how to run**
