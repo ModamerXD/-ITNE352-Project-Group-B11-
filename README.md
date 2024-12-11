@@ -1,38 +1,40 @@
 # -ITNE352-Project-Group-B11-
 
-**a.Project Title**
+-**Project Title**
 News API Client-Server System
 
-
-**b.Project Description**
+#project-description
+-**Project Description**
 An program called the News API Client-Server System enables users to access the NewsAPI service to look for news headlines and sources. The system is scalable and effective for retrieving news in real time because it is designed to support several users.
 
-**c.Semester**
+-**Semester**
  (1 , 2024/2025)
 
 
-**d.Group**
-Group Name: B11
-Course Code: ITNE352
-Section: 2
-Student Names , IDs: Sayed Ali Shafeeq Alawi - 202209438 | HUSAIN JAMEEL HUSAIN - 202210372
+-**Group**
+-**Group Name: B11**
+-**Course Code: ITNE352**
+-**Section: 2**
+-**Students:**
+-Sayed Ali Shafeeq Alawi - 202209438*
+-HUSAIN JAMEEL HUSAIN - 202210372
 
 
 **Table of Contents**
-- [Project-Description]
-- [Requirements]
-- [How-to-Run]
-- [Scripts]
-- [Additional-Concepts]
-- [Acknowledgments]
-- [Conclusion]
+- [Project-Description](#project-description)
+- [Requirements](#Requirements)
+- [How-to-Run](#how-to-run)
+- [Scripts](#scripts)
+- [Additional-Concepts](#additional-concepts)
+- [Acknowledgments](#acknowledgments)
+- [Conclusion](#conclusion)
 
 
-
--**f.Requirements**
+#requirements
+-**Requirements**
 -**need Python 3.8 or higher installed:**
 
--python packages-
+-**python packages**
 - 'socket'
 -'threading'
 -'requests'
@@ -41,19 +43,19 @@ Student Names , IDs: Sayed Ali Shafeeq Alawi - 202209438 | HUSAIN JAMEEL HUSAIN 
 -'tkinter or tk'
 -'you must have a NewsAPI API key. You can get it by creating an account on NewsAPI.'
 
-
-**g.how to run**
+#how to run
+-**how to run**
 
 - Start the server - 
 Running the server by python server.py
 
 the server will:
 Accept client connection and will display the Accepted form with the client name 
-like: Accepted connection from Husain
+like: Accepted connection from Hussain
 save responses in JSON
 
 - Start the client -
-Running the client by python Client_gui.py
+Running the client by python Client.py
 Follow the menu options to interact with the server:
 
 **The scripts**
@@ -63,14 +65,15 @@ Follow the menu options to interact with the server:
 - 3 Quit
 
 Then you should choose how you want toe search 1 for Search by keywords ,  2 for Search by category ,  
-3 for Search by country  , 4 for List all new headlines and 5 for Back to main menu .
+3 for Search by country  , 4 for List all new headlines and 5 for Back to main menu.
 
 You can search multiple time , and if you finish you can back to main menu and choose Quit option .
-  
+
+ 
 - Scripts Overview -
 Server Script (`server.py`)
 
-- Purpose:  
+-**Purpose:**  
   Handles client connections and fetches news data using the NewsAPI.
 
 - Key Functionalities:  
@@ -89,7 +92,7 @@ Client Script (`client.py`)
   - Sends requests to the server and processes responses.
 
 
-**i.Addintional concept (GUI)** 
+-**Addintional concept (GUI)** 
 you should run the Client by (python Client_gui.py)
 First you have to enter your name . 
 
@@ -101,11 +104,11 @@ If you choose keyword you should enter the keyword you want to search about it ,
 If you finish you can just close the GUI to terminate the session
 
 
-**j.Acknowledgments**
+**Acknowledgments**
 (Instructor: Dr. Mohammed Almeer)
 - Dr. Mohammed Almeer's constant support and outstanding advice throughout this project and the semester are greatly appreciated. His wise counsel and support have been essential to our educational process, motivating us to overcome obstacles and achieve excellence in our work. Dr. Almeer, your commitment to creating a cooperative and stimulating learning atmosphere has been really motivating, and we are incredibly appreciative of the beneficial influence you have had on our academic development.
 (University of Bahrain)
 
 
-**k.Conclusion**
+**Conclusion**
 This project showcases the development of a client-server application in Python using socket programming and multi-threading to interact with external APIs. It efficiently retrieves and serves real-time news data, demonstrating scalable and interactive client-server architecture.
