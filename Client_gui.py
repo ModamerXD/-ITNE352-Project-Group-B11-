@@ -461,7 +461,7 @@ def more_details_source(number,data):
         text_widget = tk.Text(window, wrap="word", width=80, height=10)
         text_widget.pack(pady=10, padx=10)
         text_widget.insert("end",
-            f"{i+1} - Source name: {data['sources'][number-1]['name']}\n"
+            f"Source name: {data['sources'][number-1]['name']}\n"
             f"Country: {data['sources'][number-1]['country']}\n"
             f"Description: {data['sources'][number-1]['description']}\n"
             f"URL:, {data['sources'][number-1]['url']}\n"
