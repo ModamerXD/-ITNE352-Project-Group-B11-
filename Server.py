@@ -30,7 +30,7 @@ def start_server():
         client_thread.start()
 
 def client_handling(client_socket, client_name):
-    API = "9d73eeefa6dc4ec8a2fe74a16501503d"
+    API = "047dec966ea94cee99cf7361cf3b86d8"
     try:
         while True:
             request = client_socket.recv(2048).decode("utf-8")
